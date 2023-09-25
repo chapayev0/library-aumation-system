@@ -1,0 +1,15 @@
+<RCC>
+  <qresource prefix="icon">
+    <file>assets/icon.ico</file>
+    <file>assets/c.png</file>
+    <file>assets/failed.png</file>
+  </qresource>
+  <qresource prefix="image">
+    <file>C:/Users/Dilhara/Downloads/New Project.jpg</file>
+    <file>C:/Users/Dilhara/Downloads/24hr BRS(1).JPEG</file>
+    <file>assets/system.png</file>
+    <file>assets/about.jpg</file>
+    <file>assets/splash.jpg</file>
+  </qresource>
+  <qresource prefix="newPrefix"/>
+</RCC>
