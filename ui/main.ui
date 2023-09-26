@@ -51,7 +51,7 @@
         <string notr="true">border:none;</string>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="reception_page">
         <layout class="QHBoxLayout" name="horizontalLayout_5">
@@ -191,14 +191,21 @@ background-color: rgb(24, 58, 86);
                       <height>100</height>
                      </size>
                     </property>
+                    <property name="font">
+                     <font>
+                      <family>Segoe UI Black</family>
+                      <pointsize>12</pointsize>
+                      <weight>75</weight>
+                      <bold>true</bold>
+                     </font>
+                    </property>
                     <property name="styleSheet">
-                     <string notr="true">background-image: url(:/image/assets/system.png);
-background-position: center;
- background-repeat: no-repeat;
-</string>
+                     <string notr="true">color: rgb(255, 255, 255);</string>
                     </property>
                     <property name="text">
-                     <string/>
+                     <string>24Hr 
+Book Retrieving
+System</string>
                     </property>
                    </widget>
                   </item>
@@ -746,7 +753,7 @@ border-color: rgb(250, 97, 100);
                <item>
                 <widget class="QStackedWidget" name="recipt_stack">
                  <property name="currentIndex">
-                  <number>9</number>
+                  <number>6</number>
                  </property>
                  <widget class="QWidget" name="reciption_page">
                   <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -9623,11 +9630,16 @@ QPushButton:hover{
                     <height>100</height>
                    </size>
                   </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">background-image: url(:/image/C:/Users/Dilhara/Downloads/New Project.jpg);</string>
                   </property>
                   <property name="text">
-                   <string/>
+                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;24Hr &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Book Retriving &lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;System&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                   </property>
                  </widget>
                 </item>

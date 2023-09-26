@@ -291,7 +291,6 @@ class main_ui(QMainWindow):
         self.ui.r_inv_btn.clicked.connect(self.ph_bill_print)
         self.ui.r_m_discount_typr.currentTextChanged.connect(self.calculate_r_total)
 
-        self.ui.re_btn.clicked.connect(self.recption_page)
 
         self.ui.about_btn.clicked.connect(self.show_about)
 
@@ -302,6 +301,11 @@ class main_ui(QMainWindow):
         self.ui.new_usr_btn.clicked.connect(self.stu_trigger)
 
         self.ui.set_apply_btn.clicked.connect(self.user_update_book)
+
+        self.ui.re_home.hide()
+        self.ui.re_btn.hide()
+
+        self.ui.re_setting.hide()
 
     def user_update_book(self):
 
@@ -357,7 +361,7 @@ class main_ui(QMainWindow):
 
             cursor = user_data.cursor()
 
-            data_tup = (name, mail, id)usr_list
+            data_tup = (name, mail, id)
 
             write_recipt_data = """INSERT INTO 'student' ('name', 'mail', 'id') VALUES (?, ?, ?)"""
 
@@ -1453,8 +1457,6 @@ class main_ui(QMainWindow):
 
             self.ui.main_stack.setCurrentWidget(self.ui.reception_page)
             self.ui.recipt_stack.setCurrentWidget(self.ui.user_control_page)
-#            self.ui.pharmacy_btn.show()
-#            self.ui.re_apoinment.show()
             self.ui.usr_control_btn.show()
             self.ui.re_btn.show()
             self.ui.re_history.show()
@@ -1815,6 +1817,7 @@ class main_ui(QMainWindow):
                     text = message.as_string()
                     server.sendmail(sender_email, reciver_mail, text)
                     print('Email sent successfully')
+
                 except Exception as e:
                     print(f'Error: {str(e)}')
                 finally:
@@ -1860,6 +1863,26 @@ class main_ui(QMainWindow):
                 # Add email body
                 html_body = MIMEText(html_content, 'html')
                 message.attach(html_body)
+
+                name = ""
+
+                id = self.ui.usr_id.text()
+
+                print(id)
+                print(name)
+
+                user_dat = sqlite3.connect(database_system)
+
+                user_dat.text_factory
+
+                cursor1 = user_dat.cursor()
+
+                user_dat.interrupt()
+
+                cursor1.execute("""UPDATE user_table SET user_name = '%s' WHERE id = '%s'""" % (name, book_id))
+
+                user_dat.commit()
+                cursor1.close()
 
                 # Connect to the SMTP server and send the email
                 try:

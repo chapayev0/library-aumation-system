@@ -1,0 +1,8 @@
+PySide2
+platform
+pyautogui
+requests
+pillow
+secure-smtplib
+PyQt5Designer
+python-barcode

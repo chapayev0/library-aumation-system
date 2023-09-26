@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainsadyTB.ui'
+## Form generated from reading UI file 'mainWZWKdy.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -16,8 +16,6 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
 from PySide2.QtWidgets import *
 
 from PySide2.QtWebEngineWidgets import QWebEngineView
-
-from PySide2.QtWidgets import *
 import sys
 import sqlite3
 import os
@@ -97,20 +95,23 @@ class Ui_MainWindow(object):
         self.pushButton = QPushButton(self.frame_2)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(0, 100))
-        self.pushButton.setStyleSheet(u"background-image: url(:/image/assets/system.png);\n"
-"background-position: center;\n"
-" background-repeat: no-repeat;\n"
-"")
+        font = QFont()
+        font.setFamily(u"Segoe UI Black")
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton.setFont(font)
+        self.pushButton.setStyleSheet(u"color: rgb(255, 255, 255);")
 
         self.verticalLayout_3.addWidget(self.pushButton)
 
         self.re_home = QPushButton(self.frame_2)
         self.re_home.setObjectName(u"re_home")
         self.re_home.setMinimumSize(QSize(0, 50))
-        font = QFont()
-        font.setFamily(u"Segoe UI Symbol")
-        font.setPointSize(9)
-        self.re_home.setFont(font)
+        font1 = QFont()
+        font1.setFamily(u"Segoe UI Symbol")
+        font1.setPointSize(9)
+        self.re_home.setFont(font1)
         self.re_home.setStyleSheet(u"QPushButton{\n"
 "	background-color:none;\n"
 "border:none;\n"
@@ -450,9 +451,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
         self.counter_lbl = QLabel(self.frame_9)
         self.counter_lbl.setObjectName(u"counter_lbl")
-        font1 = QFont()
-        font1.setPointSize(48)
-        self.counter_lbl.setFont(font1)
+        font2 = QFont()
+        font2.setPointSize(48)
+        self.counter_lbl.setFont(font2)
         self.counter_lbl.setAlignment(Qt.AlignCenter)
 
         self.horizontalLayout_9.addWidget(self.counter_lbl)
@@ -3383,6 +3384,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_141.addWidget(self.label_91)
 
 
+
         self.verticalLayout_43.addWidget(self.frame_137)
 
 
@@ -4215,7 +4217,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_34.addWidget(self.h_date_lbl)
 
-
         self.horizontalLayout_32.addWidget(self.frame_31)
 
         self.frame_33 = QFrame(self.frame_30)
@@ -4518,6 +4519,9 @@ class Ui_MainWindow(object):
         self.label_50.setObjectName(u"label_50")
         self.label_50.setMinimumSize(QSize(150, 150))
         self.label_50.setMaximumSize(QSize(100, 100))
+        font3 = QFont()
+        font3.setPointSize(14)
+        self.label_50.setFont(font3)
         self.label_50.setStyleSheet(u"background-image: url(:/image/C:/Users/Dilhara/Downloads/New Project.jpg);")
 
         self.horizontalLayout_108.addWidget(self.label_50)
@@ -4670,10 +4674,10 @@ class Ui_MainWindow(object):
         self.horizontalLayout_80.setObjectName(u"horizontalLayout_80")
         self.plainTextEdit = QPlainTextEdit(self.frame_67)
         self.plainTextEdit.setObjectName(u"plainTextEdit")
-        font2 = QFont()
-        font2.setFamily(u"Segoe MDL2 Assets")
-        font2.setPointSize(11)
-        self.plainTextEdit.setFont(font2)
+        font4 = QFont()
+        font4.setFamily(u"Segoe MDL2 Assets")
+        font4.setPointSize(11)
+        self.plainTextEdit.setFont(font4)
         self.plainTextEdit.setStyleSheet(u"color: rgb(255, 74, 101);")
         self.plainTextEdit.setReadOnly(True)
 
@@ -4782,7 +4786,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.main_stack.setCurrentIndex(0)
-        self.recipt_stack.setCurrentIndex(9)
+        self.recipt_stack.setCurrentIndex(6)
         self.report_page_2.setCurrentIndex(1)
         self.report_page.setCurrentIndex(0)
         self.history_cat_combo.setCurrentIndex(-1)
@@ -4794,7 +4798,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.pushButton.setText("")
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"24Hr \n"
+"Book Retrieving\n"
+"System", None))
         self.re_home.setText(QCoreApplication.translate("MainWindow", u"Dashboard", None))
         self.re_history.setText(QCoreApplication.translate("MainWindow", u"Add user", None))
         self.usr_control_btn.setText(QCoreApplication.translate("MainWindow", u"Database", None))
@@ -5072,7 +5078,7 @@ class Ui_MainWindow(object):
         self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"Print", None))
         self.rc_cancl_print.setText(QCoreApplication.translate("MainWindow", u"Cancle", None))
         self.rc_print.setText(QCoreApplication.translate("MainWindow", u"Print", None))
-        self.label_50.setText("")
+        self.label_50.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">24Hr </span></p><p align=\"center\"><span style=\" color:#ffffff;\">Book Retriving </span></p><p align=\"center\"><span style=\" color:#ffffff;\">System</span></p></body></html>", None))
         self.user_name.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter username", None))
         self.user_password.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Enter password", None))
         self.froget_pass_btn.setText(QCoreApplication.translate("MainWindow", u"Froget Password ?", None))
