@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainxGILEE.ui'
+## Form generated from reading UI file 'mainsadyTB.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.1
 ##
@@ -14,16 +14,16 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
     QRadialGradient)
 from PySide2.QtWidgets import *
+
+from PySide2.QtWebEngineWidgets import QWebEngineView
+
+from PySide2.QtWidgets import *
 import sys
 import sqlite3
 import os
 THIS_DIR = os.path.dirname(__file__)
 CODE_DIR = os.path.abspath(os.path.join(THIS_DIR, '..', 'ui'))
 sys.path.append(CODE_DIR)
-from PySide2.QtWebEngineWidgets import QWebEngineView
-
-from PySide2.QtWebEngineWidgets import QWebEngineView
-
 import resource_rc
 
 class Ui_MainWindow(object):
@@ -2363,60 +2363,6 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_27.addWidget(self.frame_40)
 
-        self.frame_41 = QFrame(self.frame_25)
-        self.frame_41.setObjectName(u"frame_41")
-        self.frame_41.setFrameShape(QFrame.StyledPanel)
-        self.frame_41.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_48 = QHBoxLayout(self.frame_41)
-        self.horizontalLayout_48.setObjectName(u"horizontalLayout_48")
-        self.label_26 = QLabel(self.frame_41)
-        self.label_26.setObjectName(u"label_26")
-        self.label_26.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_48.addWidget(self.label_26)
-
-        self.set_ap_def_price = QLineEdit(self.frame_41)
-        self.set_ap_def_price.setObjectName(u"set_ap_def_price")
-        self.set_ap_def_price.setMinimumSize(QSize(0, 30))
-        self.set_ap_def_price.setMaximumSize(QSize(200, 16777215))
-        self.set_ap_def_price.setStyleSheet(u"background-color: rgb(220, 220, 220);")
-
-        self.horizontalLayout_48.addWidget(self.set_ap_def_price)
-
-        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_48.addItem(self.horizontalSpacer_17)
-
-
-        self.verticalLayout_27.addWidget(self.frame_41)
-
-        self.frame_102 = QFrame(self.frame_25)
-        self.frame_102.setObjectName(u"frame_102")
-        self.frame_102.setFrameShape(QFrame.StyledPanel)
-        self.frame_102.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_103 = QHBoxLayout(self.frame_102)
-        self.horizontalLayout_103.setObjectName(u"horizontalLayout_103")
-        self.label_65 = QLabel(self.frame_102)
-        self.label_65.setObjectName(u"label_65")
-        self.label_65.setMinimumSize(QSize(150, 0))
-
-        self.horizontalLayout_103.addWidget(self.label_65)
-
-        self.set_ph_sel_price = QLineEdit(self.frame_102)
-        self.set_ph_sel_price.setObjectName(u"set_ph_sel_price")
-        self.set_ph_sel_price.setMinimumSize(QSize(0, 30))
-        self.set_ph_sel_price.setMaximumSize(QSize(200, 16777215))
-        self.set_ph_sel_price.setStyleSheet(u"background-color: rgb(220, 220, 220);")
-
-        self.horizontalLayout_103.addWidget(self.set_ph_sel_price)
-
-        self.horizontalSpacer_31 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout_103.addItem(self.horizontalSpacer_31)
-
-
-        self.verticalLayout_27.addWidget(self.frame_102)
-
         self.verticalSpacer_2 = QSpacerItem(20, 308, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_27.addItem(self.verticalSpacer_2)
@@ -4270,8 +4216,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_34.addWidget(self.h_date_lbl)
 
 
-
-
         self.horizontalLayout_32.addWidget(self.frame_31)
 
         self.frame_33 = QFrame(self.frame_30)
@@ -4378,7 +4322,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 69, 69))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 1044, 355))
         self.horizontalLayout_40 = QHBoxLayout(self.scrollAreaWidgetContents)
         self.horizontalLayout_40.setSpacing(0)
         self.horizontalLayout_40.setObjectName(u"horizontalLayout_40")
@@ -4838,9 +4782,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.main_stack.setCurrentIndex(0)
-        self.recipt_stack.setCurrentIndex(8)
+        self.recipt_stack.setCurrentIndex(9)
         self.report_page_2.setCurrentIndex(1)
-        self.report_page.setCurrentIndex(1)
+        self.report_page.setCurrentIndex(0)
         self.history_cat_combo.setCurrentIndex(-1)
         self.login_stack.setCurrentIndex(0)
 
@@ -5019,11 +4963,9 @@ class Ui_MainWindow(object):
         self.ap_ok_btn.setToolTip(QCoreApplication.translate("MainWindow", u"Add apoinment", None))
 #endif // QT_CONFIG(tooltip)
         self.ap_ok_btn.setText(QCoreApplication.translate("MainWindow", u"Add", None))
-        self.label_24.setText(QCoreApplication.translate("MainWindow", u"Reciption Default Price", None))
-        self.label_26.setText(QCoreApplication.translate("MainWindow", u"Appoinment Default Price", None))
-        self.label_65.setText(QCoreApplication.translate("MainWindow", u"Pharmacy Sel Price(%)", None))
+        self.label_24.setText(QCoreApplication.translate("MainWindow", u"Student Number", None))
         self.set_cancle_btn.setText(QCoreApplication.translate("MainWindow", u"Cancle", None))
-        self.set_apply_btn.setText(QCoreApplication.translate("MainWindow", u"Apply", None))
+        self.set_apply_btn.setText(QCoreApplication.translate("MainWindow", u"release", None))
         self.label_99.setText(QCoreApplication.translate("MainWindow", u"Medicine Name", None))
         self.label_100.setText(QCoreApplication.translate("MainWindow", u"Medicine Brand", None))
         self.label_102.setText(QCoreApplication.translate("MainWindow", u"Price", None))

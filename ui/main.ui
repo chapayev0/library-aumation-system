@@ -746,7 +746,7 @@ border-color: rgb(250, 97, 100);
                <item>
                 <widget class="QStackedWidget" name="recipt_stack">
                  <property name="currentIndex">
-                  <number>8</number>
+                  <number>9</number>
                  </property>
                  <widget class="QWidget" name="reciption_page">
                   <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -4795,7 +4795,7 @@ background-color: rgb(21, 199, 203);
                             </size>
                            </property>
                            <property name="text">
-                            <string>Reciption Default Price</string>
+                            <string>Student Number</string>
                            </property>
                           </widget>
                          </item>
@@ -4820,120 +4820,6 @@ background-color: rgb(21, 199, 203);
                          </item>
                          <item>
                           <spacer name="horizontalSpacer_16">
-                           <property name="orientation">
-                            <enum>Qt::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QFrame" name="frame_41">
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
-                        </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
-                        </property>
-                        <layout class="QHBoxLayout" name="horizontalLayout_48">
-                         <item>
-                          <widget class="QLabel" name="label_26">
-                           <property name="minimumSize">
-                            <size>
-                             <width>150</width>
-                             <height>0</height>
-                            </size>
-                           </property>
-                           <property name="text">
-                            <string>Appoinment Default Price</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLineEdit" name="set_ap_def_price">
-                           <property name="minimumSize">
-                            <size>
-                             <width>0</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="maximumSize">
-                            <size>
-                             <width>200</width>
-                             <height>16777215</height>
-                            </size>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: rgb(220, 220, 220);</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <spacer name="horizontalSpacer_17">
-                           <property name="orientation">
-                            <enum>Qt::Horizontal</enum>
-                           </property>
-                           <property name="sizeHint" stdset="0">
-                            <size>
-                             <width>40</width>
-                             <height>20</height>
-                            </size>
-                           </property>
-                          </spacer>
-                         </item>
-                        </layout>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QFrame" name="frame_102">
-                        <property name="frameShape">
-                         <enum>QFrame::StyledPanel</enum>
-                        </property>
-                        <property name="frameShadow">
-                         <enum>QFrame::Raised</enum>
-                        </property>
-                        <layout class="QHBoxLayout" name="horizontalLayout_103">
-                         <item>
-                          <widget class="QLabel" name="label_65">
-                           <property name="minimumSize">
-                            <size>
-                             <width>150</width>
-                             <height>0</height>
-                            </size>
-                           </property>
-                           <property name="text">
-                            <string>Pharmacy Sel Price(%)</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <widget class="QLineEdit" name="set_ph_sel_price">
-                           <property name="minimumSize">
-                            <size>
-                             <width>0</width>
-                             <height>30</height>
-                            </size>
-                           </property>
-                           <property name="maximumSize">
-                            <size>
-                             <width>200</width>
-                             <height>16777215</height>
-                            </size>
-                           </property>
-                           <property name="styleSheet">
-                            <string notr="true">background-color: rgb(220, 220, 220);</string>
-                           </property>
-                          </widget>
-                         </item>
-                         <item>
-                          <spacer name="horizontalSpacer_31">
                            <property name="orientation">
                             <enum>Qt::Horizontal</enum>
                            </property>
@@ -5032,7 +4918,7 @@ background-color: rgb(21, 199, 203);
                          <string notr="true">background-color: rgb(38, 223, 125);</string>
                         </property>
                         <property name="text">
-                         <string>Apply</string>
+                         <string>release</string>
                         </property>
                        </widget>
                       </item>
@@ -5052,7 +4938,7 @@ background-color: rgb(21, 199, 203);
                       <enum>QTabWidget::Rounded</enum>
                      </property>
                      <property name="currentIndex">
-                      <number>1</number>
+                      <number>0</number>
                      </property>
                      <property name="elideMode">
                       <enum>Qt::ElideNone</enum>
@@ -9351,8 +9237,8 @@ background-color: rgb(21, 199, 203);
                              <rect>
                               <x>0</x>
                               <y>0</y>
-                              <width>69</width>
-                              <height>69</height>
+                              <width>1044</width>
+                              <height>355</height>
                              </rect>
                             </property>
                             <layout class="QHBoxLayout" name="horizontalLayout_40">

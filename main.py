@@ -39,6 +39,7 @@ import time
 #CODE_DIR = os.path.abspath(os.path.join(THIS_DIR, '..', 'ui'))
 #sys.path.append(CODE_DIR)
 
+book_id = ""
 esp_data = ""
 
 recip_counter = 0
@@ -166,7 +167,7 @@ class main_ui(QMainWindow):
         self.default_price_total()
 
 
-        self.load_settings()
+        # self.load_settings()
         self.usr_lst_update()
 
 
@@ -298,7 +299,42 @@ class main_ui(QMainWindow):
 
         self.ui.ap_ok_btn.clicked.connect(self.add_user1)
 
-        self.ui.new_usr_btn.clicked.connect(self.second_w_show)
+        self.ui.new_usr_btn.clicked.connect(self.stu_trigger)
+
+        self.ui.set_apply_btn.clicked.connect(self.user_update_book)
+
+    def user_update_book(self):
+
+        global book_id
+
+        name = self.ui.set_rc_def_price.text()
+
+        id = self.ui.usr_id.text()
+
+        print(id)
+        print(name)
+
+
+        user_dat = sqlite3.connect(database_system)
+
+        user_dat.text_factory
+
+        cursor1 = user_dat.cursor()
+
+        user_dat.interrupt()
+
+        cursor1.execute("""UPDATE user_table SET user_name = '%s' WHERE id = '%s'""" % (name, book_id))
+
+        user_dat.commit()
+        cursor1.close()
+
+
+
+    def stu_trigger(self):
+
+
+
+        self.ui.recipt_stack.setCurrentWidget(self.ui.setting_page)
 
     def second_w_show(self):
 
@@ -321,7 +357,7 @@ class main_ui(QMainWindow):
 
             cursor = user_data.cursor()
 
-            data_tup = (name, mail, id)
+            data_tup = (name, mail, id)usr_list
 
             write_recipt_data = """INSERT INTO 'student' ('name', 'mail', 'id') VALUES (?, ?, ?)"""
 
@@ -1643,6 +1679,7 @@ class main_ui(QMainWindow):
 
     def usr_lst_item_clicked(self):
         global new_usr
+        global book_id
         new_usr = 0
 
         text = self.ui.usr_list.currentItem().text().split()
@@ -1663,6 +1700,8 @@ class main_ui(QMainWindow):
             username = str(i[6])
             password = str(i[7])
 
+            book_id = id
+
             self.ui.usr_name.setText(name)
             self.ui.usr_phone.setText(phone)
             self.ui.usr_mail.setText(mail)
@@ -1670,15 +1709,21 @@ class main_ui(QMainWindow):
             self.ui.usr_id.setText(id)
             self.ui.usr_position.setText(position)
 
+        db.close()
+
 
     def book_success(self):
 
-        url = "https://192.168.08.200"
+        url = "http://192.168.8.145/on"
 
         # Define the data you want to send as a dictionary
-        data = "on"
+        data = "/on"
         # Send a POST request with the data
-        response = requests.post(url, data=data)
+        response = requests.get(url, data=data)
+
+
+
+        print(response.text)
 
         # Check the response from the server
         if response.status_code == 200:
@@ -1688,13 +1733,14 @@ class main_ui(QMainWindow):
 
 
     def book_failed(self):
-
-        url = "https://192.168.08.200"
+        url = "http://192.168.8.145/off"
 
         # Define the data you want to send as a dictionary
-        data = "off"
+        data = "/off"
         # Send a POST request with the data
-        response = requests.post(url, data=data)
+        response = requests.get(url, data=data)
+
+
 
         # Check the response from the server
         if response.status_code == 200:
@@ -1725,7 +1771,7 @@ class main_ui(QMainWindow):
 
             if result is None:
 
-               # self.book_failed()
+                self.book_failed()
                 print("none")
 
 
@@ -1777,7 +1823,7 @@ class main_ui(QMainWindow):
 
             else:
 
-#                self.book_success()
+                self.book_success()
                 # Iterate over the result tuple and add each value to the list
                 formatted_data = "\t".join(str(value) for value in result)
                 self.ui.usr_list.addItem(formatted_data)
@@ -1867,32 +1913,6 @@ class main_ui(QMainWindow):
         self.ui.recipt_stack.setCurrentWidget(self.ui.pharmacy_page)
 
 
-
-    def load_settings(self):
-        db = sqlite3.connect(database_system)
-        db.cursor()
-
-        data = db.execute(""" SELECT * FROM rcp_settings""")
-
-        for i in data:
-
-            if i[0] == "rc_def_price":
-
-                self.ui.set_rc_def_price.setText(i[1])
-                self.ui.rc_default_price.setText(i[1])
-                self.ui.rc_total_price.setText(i[1])
-
-            elif i[0] == "ap_def_price":
-
-                self.ui.set_ap_def_price.setText(i[1])
-
-
-            elif i[0] == "ph_def_sel_price":
-
-                self.ui.set_ph_sel_price.setText(i[1])
-
-
-
     def set_cancle(self):
         self.ui.recipt_stack.setCurrentWidget(self.ui.reciption_page)
 
@@ -1903,8 +1923,6 @@ class main_ui(QMainWindow):
     def rcp_setting_write(self):
 
         rc_def = self.ui.set_rc_def_price.text()
-        ap_def = self.ui.set_ap_def_price.text()
-        ph_def = self.ui.set_ph_sel_price.text()
 
 
         user_data = sqlite3.connect(database_system)
@@ -1915,13 +1933,10 @@ class main_ui(QMainWindow):
 
 
         cursor.execute("""UPDATE rcp_settings SET value = '%s' WHERE name = 'rc_def_price'""" % (rc_def))
-        cursor.execute("""UPDATE rcp_settings SET value = '%s' WHERE name = 'ap_def_price'""" % (ap_def))
-        cursor.execute("""UPDATE rcp_settings SET value = '%s' WHERE name = 'ph_def_sel_price'""" % (ph_def))
 
         user_data.commit()
         cursor.close()
 
-        self.load_settings()
 
 
 
