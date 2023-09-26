@@ -16,16 +16,24 @@ import io
 import sys
 import sqlite3
 import os
-import qrcode
+
+import requests
+
 import tempfile
 import barcode
 from barcode import *
 from barcode import Code128
 from barcode.writer import ImageWriter
 
+
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+
 from ui.ui_main import *
-
-
+from ui.ui_stu_box import Ui_Dialog
 import time
 #THIS_DIR = os.path.dirname(__file__)
 #CODE_DIR = os.path.abspath(os.path.join(THIS_DIR, '..', 'ui'))
@@ -84,6 +92,17 @@ inventory_log = 0
 splash_counter = 0
 
 
+class SecondWindow(QDialog):
+    def __init__(self):
+        QDialog.__init__(self)
+
+        # Load the UI from the generated module
+        self.ui = Ui_Dialog()
+        self.ui.setupUi(self)
+
+
+
+
 class main_ui(QMainWindow):
 
     def __init__(self):
@@ -94,10 +113,10 @@ class main_ui(QMainWindow):
         self.setWindowFlag(QtCore.Qt.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WA_TranslucentBackground)
 
+
         icon = QIcon(":/icon/assets/icon.ico")
 
         self.setWindowIcon(icon)
-
 
         #external parts
 
@@ -144,22 +163,15 @@ class main_ui(QMainWindow):
 
         # autorun functions
 
-       # self.firebase_db_connect()
-
         self.default_price_total()
-        self.ap_price_total()
+
 
         self.load_settings()
         self.usr_lst_update()
 
-        self.ui.history_date_edit.setDate(QDate.currentDate())
-        self.ui.ap_date_search.setDate(QDate.currentDate())
+
         self.ui.rc_radio.setChecked(True)
 
-        self.search_by_name()
-
-       # self.ui.main_stack.setCurrentWidget(self.ui.reception_page)
-       # self.ui.recipt_stack.setCurrentWidget(self.ui.reciption_page)
 
         #change below to set main page
 
@@ -167,43 +179,16 @@ class main_ui(QMainWindow):
         self.ui.login_stack.setCurrentWidget(self.ui.login_window)
 
 
-        self.add_doctor_combo()
         self.date_time()
         self.history_combo()
 
         self.id_generate()
 
-        # self.print_win.ui.widget_2.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.PluginsEnabled, True)
-        # self.print_win.ui.widget_2.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.PdfViewerEnabled, True)
-        # self.print_win.ui.widget_2.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.ShowScrollBars, True)
-        # self.print_win.ui.widget_2.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.ScrollAnimatorEnabled,
-        #                                                    True)
-
-        #self.create_tables()
-
-
         self.rep_home_clicked()
 
-     #   self.ui.rc_default_price.setValidator(QIntValidator())
-      #  self.ui.rc_addtional_price.setValidator(QIntValidator())
-        #self.ui.rc_total_price.setValidator(QIntValidator())
-        self.ui.rc_age.setValidator(QIntValidator())
-        self.ui.re_up_age.setValidator(QIntValidator())
-        self.ui.r_m_qty.setValidator(QIntValidator())
-        #self.ui.r_total.setValidator(QIntValidator())
-       # self.ui.r_discount.setValidator(QIntValidator())
-        self.ui.pc_m_qty.setValidator(QIntValidator())
-        #self.ui.pc_m_u_discount.setValidator(QIntValidator())
-        #self.ui.pc_m_u_price.setValidator(QI())
-        self.ui.m_store_qty.setValidator(QIntValidator())
-        #self.ui.m_store_u_price.setValidator(QIntValidator())
 
-        self.ui.ap_phone_num.setValidator(QIntValidator())
-     #   self.ui.ap_default_price.setValidator(QIntValidator())
-       # self.ui.ap_addtional_price.setValidator(QIntValidator())
-        #self.ui.ap_total_price.setValidator(QIntValidator())
-        self.ui.next_num.setValidator(QIntValidator())
-        self.ui.ap_age.setValidator(QIntValidator())
+
+        self.ui.user_search.setFocus()
 
 
 
@@ -230,16 +215,8 @@ class main_ui(QMainWindow):
         self.ui.rc_default_price.textChanged.connect(self.default_price_total)
         self.ui.rc_addtional_price.textChanged.connect(self.addtional_total_price)
 
-        self.ui.ap_default_price.textChanged.connect(self.ap_price_total)
-        self.ui.ap_addtional_price.textChanged.connect(self.ap_addtional_total_price)
-
-        self.ui.doc_combo.currentTextChanged.connect(self.doctor_select_combo)
-        self.ui.ap_date_search.dateChanged.connect(self.doctor_select_combo)
-        self.ui.ap_ok_btn.clicked.connect(self.recipt_apoinment_write)
-
         self.ui.history_cat_combo.currentTextChanged.connect(self.combo_change)
 
-        self.counter_auto_num()
 
         self.ui.ap_list.itemDoubleClicked.connect(self.ap_update)
         self.ui.ap_edit_btn.clicked.connect(self.ap_update)
@@ -248,7 +225,7 @@ class main_ui(QMainWindow):
         self.ui.ap_update_btn.clicked.connect(self.write_ap_update)
         self.ui.ap_update_cancle_btn.clicked.connect(self.ap_up_cancle)
 
-        self.re_list_update()
+
 
         self.ui.re_list.itemDoubleClicked.connect(self.re_update)
         self.ui.re_edit_btn.clicked.connect(self.re_update)
@@ -256,11 +233,7 @@ class main_ui(QMainWindow):
         self.ui.re_update_cancle_btn.clicked.connect(self.re_up_cancle)
         self.ui.re_update_btn.clicked.connect(self.write_re_update)
 
-        self.ui.hostory_search.textChanged.connect(self.search_by_name)
-        #self.ui.history_limit_edit.textChanged.connect(self.search_by_name)
-        self.ui.history_date_edit.dateChanged.connect(self.cat_change)
-        self.ui.rc_radio.clicked.connect(self.search_by_name)
-        self.ui.ap_radio.clicked.connect(self.search_by_name)
+
 
         self.ui.history_doc_combo.currentTextChanged.connect(self.search_by_doctor)
 
@@ -294,7 +267,6 @@ class main_ui(QMainWindow):
         self.ui.r_m_discount_typr.addItem("As a Percentage(%)")
         self.ui.r_m_discount_typr.addItem("As Money Value(Rs)")
 
-        self.ui.pc_m_exp.setDate(QDate.currentDate())
         self.m_store_load()
         self.r_list_load()
         self.ui.m_store_company.textChanged.connect(self.med_store_upper)
@@ -313,7 +285,7 @@ class main_ui(QMainWindow):
         self.ui.r_m_srch.textChanged.connect(self.release_list)
         self.ui.r_m_ad_list.itemClicked.connect(self.release_list_click)
         self.ui.r_add_btn.clicked.connect(self.release_add_click)
-        #self.ui.r_add_btn.clicked.connect(self.sample_print)
+
         self.ui.r_discount.textChanged.connect(self.calculate_r_total)
         self.ui.r_inv_btn.clicked.connect(self.ph_bill_print)
         self.ui.r_m_discount_typr.currentTextChanged.connect(self.calculate_r_total)
@@ -323,8 +295,50 @@ class main_ui(QMainWindow):
         self.ui.about_btn.clicked.connect(self.show_about)
 
         self.ui.usr_id.textChanged.connect(self.barcode_read)
-       # self.ui.r_m_qty.textChanged.connect(self.stock_reduce)
-        #self.ui.r_m_qty.backspace.connect(self.stock_reduce1)
+
+        self.ui.ap_ok_btn.clicked.connect(self.add_user1)
+
+        self.ui.new_usr_btn.clicked.connect(self.second_w_show)
+
+    def second_w_show(self):
+
+        x = SecondWindow()
+        x.show()
+
+    def add_user1(self):
+
+        global new_usr
+
+        name = self.ui.ap_name.text()
+        mail = self.ui.ap_age.text()
+        id = self.ui.ap_phone_num.text()
+
+
+        if name != "" or mail != "" or id != "":
+            user_data = sqlite3.connect(database_system)
+
+            user_data.text_factory
+
+            cursor = user_data.cursor()
+
+            data_tup = (name, mail, id)
+
+            write_recipt_data = """INSERT INTO 'student' ('name', 'mail', 'id') VALUES (?, ?, ?)"""
+
+            cursor.execute(write_recipt_data, data_tup)
+            user_data.commit()
+            cursor.close()
+
+            new_usr = 0
+
+            self.ui.ap_name.clear()
+            self.ui.ap_age.clear()
+            self.ui.ap_phone_num.clear()
+
+
+    def auto_detect_books(self):
+
+        book_id = self.ui.user_search.text()
     
     def connnect_esp_board(self):
 
@@ -344,6 +358,51 @@ class main_ui(QMainWindow):
 
         else:
             print("Failed to detect book ")
+
+    def mail_send(self, msg, reciver_mail):
+
+        # Email configuration
+        smtp_server = 'smtp.gmail.com'
+        smtp_port = 587  # Port for TLS
+        sender_email = 'librarysystem24hr@gmail.com'
+        password = 'hqrm uzbe ymnh cepq '  # Your Gmail account password
+
+        # Create a message
+        message = MIMEMultipart()
+        message['From'] = sender_email
+        message['To'] = reciver_mail
+        message['Subject'] = '24hr Library System'
+
+        html_content = f"""
+        <!DOCTYPE html>
+        <html>
+          <body>
+
+            <img src="https://ibb.co/xScVT7n">
+            
+            <h1>Hello, this is 24hr Library System</h1>
+            <p>{msg}</p>
+            
+          </body>
+        </html>
+        """
+
+        # Add email body
+        html_body = MIMEText(html_content, 'html')
+        message.attach(html_body)
+
+        # Connect to the SMTP server and send the email
+        try:
+            server = smtplib.SMTP(smtp_server, smtp_port)
+            server.starttls()  # Use TLS for security
+            server.login(sender_email, password)
+            text = message.as_string()
+            server.sendmail(sender_email, reciver_mail, text)
+            print('Email sent successfully')
+        except Exception as e:
+            print(f'Error: {str(e)}')
+        finally:
+            server.quit()
 
 
     def send_mail(self, recipient_email, book_status):
@@ -1358,8 +1417,8 @@ class main_ui(QMainWindow):
 
             self.ui.main_stack.setCurrentWidget(self.ui.reception_page)
             self.ui.recipt_stack.setCurrentWidget(self.ui.user_control_page)
-            self.ui.pharmacy_btn.show()
-            self.ui.re_apoinment.show()
+#            self.ui.pharmacy_btn.show()
+#            self.ui.re_apoinment.show()
             self.ui.usr_control_btn.show()
             self.ui.re_btn.show()
             self.ui.re_history.show()
@@ -1548,8 +1607,7 @@ class main_ui(QMainWindow):
         self.ui.usr_nic.clear()
         self.ui.usr_id.clear()
         self.ui.usr_position.clear()
-        self.ui.user_l_name.clear()
-        self.ui.usr_pass.clear()
+
 
     def prev_combo_click(self):
 
@@ -1611,8 +1669,38 @@ class main_ui(QMainWindow):
             self.ui.usr_nic.setText(nic)
             self.ui.usr_id.setText(id)
             self.ui.usr_position.setText(position)
-            self.ui.user_l_name.setText(username)
-            self.ui.usr_pass.setText(password)
+
+
+    def book_success(self):
+
+        url = "https://192.168.08.200"
+
+        # Define the data you want to send as a dictionary
+        data = "on"
+        # Send a POST request with the data
+        response = requests.post(url, data=data)
+
+        # Check the response from the server
+        if response.status_code == 200:
+            print("Data sent successfully")
+        else:
+            print("Failed to send data. Status code:", response.status_code)
+
+
+    def book_failed(self):
+
+        url = "https://192.168.08.200"
+
+        # Define the data you want to send as a dictionary
+        data = "off"
+        # Send a POST request with the data
+        response = requests.post(url, data=data)
+
+        # Check the response from the server
+        if response.status_code == 200:
+            print("Data sent successfully")
+        else:
+            print("Failed to send data. Status code:", response.status_code)
 
 
 
@@ -1624,22 +1712,122 @@ class main_ui(QMainWindow):
         self.ui.usr_list.clear()
         self.ui.prev_combo.clear()
 
+        print("shashika")
+
         text = self.ui.user_search.text()
 
+        print(text)
+
         if text != "":
+            # Execute a SELECT query
+            data = db.execute("SELECT * FROM user_table WHERE id = ?", (text,))
+            result = data.fetchone()
 
-            data = db.execute(""" SELECT * FROM user_table where name = '%s'""" % (text))
+            if result is None:
 
-            for i in data:
-                cnt += 1
+               # self.book_failed()
+                print("none")
 
-                name = i[1]
-                position = i[2]
-                phone = str(i[3])
-                mail = i[4]
-                id  = i[0]
 
-                self.ui.usr_list.addItem(id + "\t" + name + "\t" + phone + "\t" + position + "\t" + mail)
+                self.ui.usr_list.addItem("This book is not registered in the library. Please Remove the book!")
+
+                smtp_server = 'smtp.gmail.com'
+                smtp_port = 587  # Port for TLS
+                sender_email = 'librarysystem24hr@gmail.com'
+                password = 'hqrm uzbe ymnh cepq '
+                reciver_mail = "sdilhara544@gmail.com"  # Your Gmail account password
+
+                # Create a message
+                message = MIMEMultipart()
+                message['From'] = sender_email
+                message['To'] = reciver_mail
+                message['Subject'] = '24hr Library System'
+
+                html_content = f"""
+                                  <!DOCTYPE html>
+                                  <html>
+                                    <body>
+    
+                                      <img src="https://ibb.co/xScVT7n">
+    
+                                      <h1>Hello, this is 24hr Library System</h1>
+                                      <p>Your book rejected by Library</p>
+    
+                                    </body>
+                                  </html>
+                                  """
+
+                # Add email body
+                html_body = MIMEText(html_content, 'html')
+                message.attach(html_body)
+
+                # Connect to the SMTP server and send the email
+                try:
+                    server = smtplib.SMTP(smtp_server, smtp_port)
+                    server.starttls()  # Use TLS for security
+                    server.login(sender_email, password)
+                    text = message.as_string()
+                    server.sendmail(sender_email, reciver_mail, text)
+                    print('Email sent successfully')
+                except Exception as e:
+                    print(f'Error: {str(e)}')
+                finally:
+                    server.quit()
+
+
+            else:
+
+#                self.book_success()
+                # Iterate over the result tuple and add each value to the list
+                formatted_data = "\t".join(str(value) for value in result)
+                self.ui.usr_list.addItem(formatted_data)
+
+                print(formatted_data)
+
+                #self.mail_send("Your Book accepted by Library", value[6])
+                smtp_server = 'smtp.gmail.com'
+                smtp_port = 587  # Port for TLS
+                sender_email = 'librarysystem24hr@gmail.com'
+                password = 'hqrm uzbe ymnh cepq '
+                reciver_mail = "sdilhara544@gmail.com"# Your Gmail account password
+
+                # Create a message
+                message = MIMEMultipart()
+                message['From'] = sender_email
+                message['To'] = reciver_mail
+                message['Subject'] = '24hr Library System'
+
+                html_content = f"""
+                   <!DOCTYPE html>
+                   <html>
+                     <body>
+    
+                       <img src="https://ibb.co/xScVT7n">
+    
+                       <h1>Hello, this is 24hr Library System</h1>
+                       <p>Your book accepted by Library</p>
+    
+                     </body>
+                   </html>
+                   """
+
+                # Add email body
+                html_body = MIMEText(html_content, 'html')
+                message.attach(html_body)
+
+                # Connect to the SMTP server and send the email
+                try:
+                    server = smtplib.SMTP(smtp_server, smtp_port)
+                    server.starttls()  # Use TLS for security
+                    server.login(sender_email, password)
+                    text = message.as_string()
+                    server.sendmail(sender_email, reciver_mail, text)
+                    print('Email sent successfully')
+                except Exception as e:
+                    print(f'Error: {str(e)}')
+                finally:
+                    server.quit()
+            # Close the cursor and the connection when done
 
         else:
 
@@ -1696,9 +1884,8 @@ class main_ui(QMainWindow):
 
             elif i[0] == "ap_def_price":
 
-                self.ui.ap_default_price.setText(i[1])
                 self.ui.set_ap_def_price.setText(i[1])
-                self.ui.ap_total_price.setText(i[1])
+
 
             elif i[0] == "ph_def_sel_price":
 
@@ -1811,169 +1998,6 @@ class main_ui(QMainWindow):
         self.ui.history_cnt.setText(str(cnt))
         self.ui.history_income.setText(str(total) + ".00")
 
-
-
-    def search_by_date(self):
-
-        global doct_id
-
-        print("date")
-        cnt = 0
-        self.ui.patient_history_list.clear()
-        total = 0
-
-        if self.ui.rc_radio.isChecked():
-            db = sqlite3.connect(database_recipt)
-            db.cursor()
-
-            date = self.ui.history_date_edit.date().toString("dd/MM/yyyy")
-
-            data = db.execute("""SELECT * FROM rc_data WHERE date = '%s'""" % (date))
-
-            for i in data:
-                cnt += 1
-
-                number = str(i[1])
-                name = i[2]
-                age = str(i[3])
-                time = i[5]
-                status = i[9]
-
-                price = int(i[8])
-
-                total = total + price
-
-                self.ui.patient_history_list.addItem("\t" + str(cnt) + "\t" + name + "\t" + number + "\t"
-                                                     + age + "\t" + "-" + "\t" + time + "\t" + str(status))
-
-            self.ui.history_cnt.setText(str(cnt))
-            self.ui.history_income.setText(str(total) + ".00")
-        elif self.ui.ap_radio.isChecked():
-
-            db = sqlite3.connect(database_apoinment)
-            db.cursor()
-            date = self.ui.history_date_edit.date().toString("dd/MM/yyyy")
-
-            if self.ui.history_cat_combo.currentText() == "Search by Doctor Name":
-
-                ap_db = sqlite3.connect(database_apoinment)
-                ap_db.cursor()
-
-                ap_data = ap_db.execute(
-                    """ SELECT * FROM ap_data WHERE doc_id = '%s' and date = '%s' """ % (doct_id, date))
-
-                for ap in ap_data:
-                    cnt += 1
-
-                    number = str(ap[8])
-                    name = ap[2]
-                    age = str(ap[3])
-                    time = ap[10]
-                    phone = str(ap[4])
-                    status = str(ap[11])
-                    price = int(ap[7])
-
-                    total = total + price
-
-                    self.ui.patient_history_list.addItem(str(cnt) + "\t" + name + "\t" + number + "\t"
-                                                         + age + "\t" + phone + "\t" + time + "\t" + status)
-
-                self.ui.history_cnt.setText(str(cnt))
-                self.ui.history_income.setText(str(total) + ".00")
-
-
-
-            else:
-
-                data = db.execute("""SELECT * FROM ap_data WHERE date = '%s'""" % (date))
-
-                for i in data:
-                    cnt += 1
-
-                    number = str(i[8])
-                    name = i[2]
-                    age = str(i[3])
-                    time = i[10]
-                    phone = str(i[4])
-                    status = str(i[11])
-                    price = int(i[7])
-
-                    total = total + price
-
-                    self.ui.patient_history_list.addItem(str(cnt) + "\t" + name + "\t" + number + "\t"
-                                                         + age + "\t" + phone + "\t" + time + "\t" + status)
-
-                self.ui.history_cnt.setText(str(cnt))
-                self.ui.history_income.setText(str(total) + ".00")
-
-
-
-    def search_by_name(self):
-
-        print("by name")
-
-        text = self.ui.hostory_search.text()
-        cnt = 0
-        self.ui.patient_history_list.clear()
-        total = 0
-
-        if text != "":
-
-            if self.ui.rc_radio.isChecked():
-                db = sqlite3.connect(database_recipt)
-                db.cursor()
-
-                date = self.ui.history_date_edit.date().toString("dd/MM/yyyy")
-
-                data = db.execute("""SELECT * FROM rc_data WHERE name = '%s' and date = '%s'""" % (text, date))
-
-                for i in data:
-                    cnt += 1
-
-                    number = str(i[1])
-                    name = i[2]
-                    age = str(i[3])
-                    time = i[5]
-                    status = i[9]
-
-                    price = int(i[8])
-
-                    total = total + price
-
-                    self.ui.patient_history_list.addItem("\t" + str(cnt) + "\t" + name + "\t" + number + "\t"
-                                                         + age + "\t" + "-" + "\t" + time + "\t" + str(status))
-                self.ui.history_cnt.setText(str(cnt))
-                self.ui.history_income.setText(str(total) + ".00")
-            elif self.ui.ap_radio.isChecked():
-
-                db = sqlite3.connect(database_apoinment)
-                db.cursor()
-                date = self.ui.history_date_edit.date().toString("dd/MM/yyyy")
-
-                data = db.execute("""SELECT * FROM ap_data WHERE p_name = '%s'  and date = '%s'""" % (text, date))
-
-                for i in data:
-                    cnt += 1
-
-                    number = str(i[8])
-                    name = i[2]
-                    age = str(i[3])
-                    time = i[10]
-                    phone = str(i[4])
-                    status = i[11]
-                    price = int(i[7])
-
-                    total = total + price
-
-                    self.ui.patient_history_list.addItem(str(cnt) + "\t" + name + "\t" + number + "\t"
-                                                         + age + "\t" + phone + "\t" + time + "\t" + str(status))
-                self.ui.history_cnt.setText(str(cnt))
-                self.ui.history_income.setText(str(total) + ".00")
-
-        else:
-
-            self.search_by_date()
-        cnt = 0
 
 
 
@@ -2202,28 +2226,6 @@ class main_ui(QMainWindow):
         self.ui.recipt_stack.setCurrentWidget(self.ui.re_update_page)
 
 
-
-    def re_list_update(self):
-
-        self.ui.re_list.clear()
-
-        date = self.ui.ap_date_search.date().toString("dd/MM/yyyy")
-
-
-        re_db = sqlite3.connect(database_recipt)
-        re_db.cursor()
-
-        data = re_db.execute(""" SELECT * FROM rc_data WHERE date='%s' """ % (date))
-
-
-        for i in data:
-            inv_num = str(i[0])
-            name = str(i[2])
-            time = str(i[5])
-            number = str(i[1])
-
-            self.ui.re_list.addItem("Invoice Number : " + inv_num + "\n" + "Patient Name : " + name + "\n"
-                                                                                               "OPD Number : " + number + "\n" + "Time : " + time)
 
     def ap_up_cancle(self):
         self.ui.recipt_stack.setCurrentWidget(self.ui.appoinment_page)
@@ -2465,92 +2467,6 @@ class main_ui(QMainWindow):
 
 
 
-
-
-
-    def counter_auto_num(self):
-        global cnt_max, recip_counter
-
-        rc_db = sqlite3.connect(database_recipt)
-        rc_cur = rc_db.cursor()
-
-        ap_db = sqlite3.connect(database_apoinment)
-        ap_cur = ap_db.cursor()
-
-        date = self.ui.ap_date_search.date().toString("dd/MM/yyyy")
-
-        self.ui.ap_date_search.setMinimumDate(QDate.currentDate())
-
-        num_list = []
-
-        print(date)
-
-        try:
-
-            max = rc_cur.execute(""" SELECT MAX(number) FROM rc_data WHERE date = '%s' """ % (date))
-
-            for m in max:
-                max_num = m[0]
-
-                if max_num == None:
-
-                    print("max number is empty")
-
-                    cnt_max = 1
-
-                else:
-
-                    cnt_max = max_num + 1
-
-                print("max", max_num)
-
-
-
-            print(cnt_max)
-
-            print(cnt_max)
-
-            num = ap_cur.execute(""" SELECT number FROM ap_data WHERE date = '%s' """ % (date))
-
-            for ap_nums in num:
-                print("number = ", ap_nums)
-                num_list.append(ap_nums[0])
-
-            print(num_list)
-
-            if cnt_max not in num_list:
-
-                print("num not in ")
-
-                recip_counter = cnt_max
-                str_counter = "0" + str(recip_counter)
-                self.ui.counter_lbl.setText(str(str_counter))
-                self.ui.next_num.setText(str(str_counter))
-
-            else:
-
-                print("alarady in")
-
-                while cnt_max in num_list:
-                    cnt_max += 1
-
-                    print("increasing", cnt_max)
-
-                recip_counter = cnt_max
-                str_counter = "0" + str(recip_counter)
-                self.ui.counter_lbl.setText(str(str_counter))
-                self.ui.next_num.setText(str(str_counter))
-
-        except TypeError:
-
-            print("ada aluth dawasak balloo")
-
-
-
-
-
-
-
     def create_tables(self):
 
         global ap_date
@@ -2788,26 +2704,6 @@ class main_ui(QMainWindow):
         self.counter_auto_num()
 
 
-    def add_doctor_combo(self):
-
-        db = sqlite3.connect(database_system)
-        db.text_factory
-
-        data = db.execute(""" SELECT * FROM doctor_table""")
-
-        for doc_info in data:
-
-            doc_name = doc_info[1]
-            doc_sp = doc_info[2]
-
-            self.ui.doc_combo.addItem(str(doc_name) + "| " + str(doc_sp))
-            self.ui.history_doc_combo.addItem(str(doc_name) + "| " + str(doc_sp))
-
-            self.ui.doc_combo.setCurrentIndex(0)
-            self.ui.history_doc_combo.setCurrentIndex(0)
-
-
-
 
 
 
@@ -2985,10 +2881,6 @@ class main_ui(QMainWindow):
     def default_price_total(self):
 
         self.ui.rc_total_price.setText(str(self.ui.rc_default_price.text()))
-
-    def ap_price_total(self):
-
-        self.ui.ap_total_price.setText(str(self.ui.ap_default_price.text()))
 
 
 
@@ -3170,7 +3062,7 @@ class main_ui(QMainWindow):
 
     def rep_history_clicked(self):
 
-        self.ui.recipt_stack.setCurrentWidget(self.ui.history_page)
+        self.ui.recipt_stack.setCurrentWidget(self.ui.appoinment_page)
 
 
     def window_max(self):
@@ -3258,6 +3150,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
 
     window = main_ui()
+
     window.show()
 
     sys.exit(app.exec_())

@@ -746,7 +746,7 @@ border-color: rgb(250, 97, 100);
                <item>
                 <widget class="QStackedWidget" name="recipt_stack">
                  <property name="currentIndex">
-                  <number>2</number>
+                  <number>8</number>
                  </property>
                  <widget class="QWidget" name="reciption_page">
                   <layout class="QHBoxLayout" name="horizontalLayout_11">
@@ -3449,7 +3449,7 @@ background-color: rgb(21, 199, 203);
                               <property name="styleSheet">
                                <string notr="true">background-color: rgb(230, 230, 230);</string>
                               </property>
-                              <property name="placeholderText">
+                              <property name="placeholderText" stdset="0">
                                <string/>
                               </property>
                               <item>
@@ -4364,76 +4364,21 @@ background-color: rgb(21, 199, 203);
                               </property>
                               <layout class="QHBoxLayout" name="horizontalLayout_42">
                                <item>
-                                <widget class="QComboBox" name="doc_combo">
+                                <widget class="QLineEdit" name="lineEdit">
                                  <property name="minimumSize">
                                   <size>
                                    <width>0</width>
-                                   <height>25</height>
+                                   <height>30</height>
                                   </size>
                                  </property>
-                                 <property name="toolTip">
-                                  <string>Select A docter to appoint</string>
-                                 </property>
-                                 <property name="styleSheet">
-                                  <string notr="true">QComboBox{
-	background-color: rgb(220, 220, 220);
-}</string>
-                                 </property>
-                                 <property name="editable">
-                                  <bool>false</bool>
-                                 </property>
-                                 <property name="currentText">
-                                  <string/>
-                                 </property>
-                                 <property name="maxVisibleItems">
-                                  <number>4</number>
-                                 </property>
-                                 <property name="placeholderText">
-                                  <string notr="true">Select Docter to Channel</string>
-                                 </property>
-                                 <property name="modelColumn">
-                                  <number>0</number>
-                                 </property>
-                                </widget>
-                               </item>
-                               <item>
-                                <widget class="QDateEdit" name="ap_date_search">
-                                 <property name="minimumSize">
+                                 <property name="maximumSize">
                                   <size>
-                                   <width>0</width>
-                                   <height>25</height>
+                                   <width>400</width>
+                                   <height>16777215</height>
                                   </size>
                                  </property>
-                                 <property name="toolTip">
-                                  <string>Select a date to appoinment</string>
-                                 </property>
                                  <property name="styleSheet">
-                                  <string notr="true">background-color: rgb(220, 220, 220);</string>
-                                 </property>
-                                 <property name="locale">
-                                  <locale language="English" country="UnitedKingdom"/>
-                                 </property>
-                                 <property name="showGroupSeparator" stdset="0">
-                                  <bool>false</bool>
-                                 </property>
-                                 <property name="minimumDateTime">
-                                  <datetime>
-                                   <hour>0</hour>
-                                   <minute>0</minute>
-                                   <second>0</second>
-                                   <year>2021</year>
-                                   <month>12</month>
-                                   <day>20</day>
-                                  </datetime>
-                                 </property>
-                                 <property name="currentSection">
-                                  <enum>QDateTimeEdit::DaySection</enum>
-                                 </property>
-                                 <property name="displayFormat">
-                                  <string>d/M/yyyy</string>
-                                 </property>
-                                 <property name="calendarPopup">
-                                  <bool>true</bool>
+                                  <string notr="true">background-color: rgb(235, 235, 235);</string>
                                  </property>
                                 </widget>
                                </item>
@@ -4476,58 +4421,6 @@ background-color: rgb(21, 199, 203);
                                <property name="bottomMargin">
                                 <number>0</number>
                                </property>
-                               <item>
-                                <widget class="QLabel" name="label_27">
-                                 <property name="text">
-                                  <string>Next Number</string>
-                                 </property>
-                                </widget>
-                               </item>
-                               <item>
-                                <widget class="QLineEdit" name="next_num">
-                                 <property name="minimumSize">
-                                  <size>
-                                   <width>1</width>
-                                   <height>30</height>
-                                  </size>
-                                 </property>
-                                 <property name="maximumSize">
-                                  <size>
-                                   <width>150</width>
-                                   <height>16777215</height>
-                                  </size>
-                                 </property>
-                                 <property name="styleSheet">
-                                  <string notr="true">background-color: rgb(220, 220, 220);</string>
-                                 </property>
-                                 <property name="placeholderText">
-                                  <string/>
-                                 </property>
-                                </widget>
-                               </item>
-                               <item>
-                                <widget class="QLabel" name="label_29">
-                                 <property name="text">
-                                  <string>Total Apointed</string>
-                                 </property>
-                                </widget>
-                               </item>
-                               <item>
-                                <widget class="QLabel" name="total_apoinments">
-                                 <property name="minimumSize">
-                                  <size>
-                                   <width>0</width>
-                                   <height>30</height>
-                                  </size>
-                                 </property>
-                                 <property name="styleSheet">
-                                  <string notr="true">background-color: rgb(220, 220, 220);</string>
-                                 </property>
-                                 <property name="text">
-                                  <string/>
-                                 </property>
-                                </widget>
-                               </item>
                               </layout>
                              </widget>
                             </item>
@@ -4618,7 +4511,7 @@ background-color: rgb(21, 199, 203);
                                      </size>
                                     </property>
                                     <property name="text">
-                                     <string>Patient Name</string>
+                                     <string>Name</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -4656,7 +4549,7 @@ background-color: rgb(21, 199, 203);
                                      </size>
                                     </property>
                                     <property name="text">
-                                     <string>Patient Age</string>
+                                     <string>Email</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -4665,11 +4558,11 @@ background-color: rgb(21, 199, 203);
                                     <property name="minimumSize">
                                      <size>
                                       <width>0</width>
-                                      <height>30</height>
+                                      <height>35</height>
                                      </size>
                                     </property>
                                     <property name="styleSheet">
-                                     <string notr="true">background-color: rgb(220, 220, 220);</string>
+                                     <string notr="true">background-color: rgb(232, 232, 232);</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -4694,7 +4587,7 @@ background-color: rgb(21, 199, 203);
                                      </size>
                                     </property>
                                     <property name="text">
-                                     <string>Phone Number</string>
+                                     <string>Student Number</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -4703,11 +4596,11 @@ background-color: rgb(21, 199, 203);
                                     <property name="minimumSize">
                                      <size>
                                       <width>0</width>
-                                      <height>30</height>
+                                      <height>35</height>
                                      </size>
                                     </property>
                                     <property name="styleSheet">
-                                     <string notr="true">background-color: rgb(214, 214, 214);</string>
+                                     <string notr="true">background-color: rgb(232, 232, 232);</string>
                                     </property>
                                    </widget>
                                   </item>
@@ -4749,37 +4642,7 @@ background-color: rgb(21, 199, 203);
                               <property name="frameShadow">
                                <enum>QFrame::Raised</enum>
                               </property>
-                              <layout class="QHBoxLayout" name="horizontalLayout_26">
-                               <item>
-                                <widget class="QLabel" name="label_10">
-                                 <property name="minimumSize">
-                                  <size>
-                                   <width>80</width>
-                                   <height>30</height>
-                                  </size>
-                                 </property>
-                                 <property name="text">
-                                  <string>Default Fee</string>
-                                 </property>
-                                </widget>
-                               </item>
-                               <item>
-                                <widget class="QLineEdit" name="ap_default_price">
-                                 <property name="minimumSize">
-                                  <size>
-                                   <width>0</width>
-                                   <height>30</height>
-                                  </size>
-                                 </property>
-                                 <property name="styleSheet">
-                                  <string notr="true">background-color: rgb(220, 220, 220);</string>
-                                 </property>
-                                 <property name="text">
-                                  <string/>
-                                 </property>
-                                </widget>
-                               </item>
-                              </layout>
+                              <layout class="QHBoxLayout" name="horizontalLayout_26"/>
                              </widget>
                             </item>
                             <item>
@@ -4790,37 +4653,7 @@ background-color: rgb(21, 199, 203);
                               <property name="frameShadow">
                                <enum>QFrame::Raised</enum>
                               </property>
-                              <layout class="QHBoxLayout" name="horizontalLayout_27">
-                               <item>
-                                <widget class="QLabel" name="label_11">
-                                 <property name="minimumSize">
-                                  <size>
-                                   <width>80</width>
-                                   <height>30</height>
-                                  </size>
-                                 </property>
-                                 <property name="text">
-                                  <string>Addtional Fee</string>
-                                 </property>
-                                </widget>
-                               </item>
-                               <item>
-                                <widget class="QLineEdit" name="ap_addtional_price">
-                                 <property name="minimumSize">
-                                  <size>
-                                   <width>0</width>
-                                   <height>30</height>
-                                  </size>
-                                 </property>
-                                 <property name="styleSheet">
-                                  <string notr="true">background-color: rgb(217, 217, 217);</string>
-                                 </property>
-                                 <property name="text">
-                                  <string>0</string>
-                                 </property>
-                                </widget>
-                               </item>
-                              </layout>
+                              <layout class="QHBoxLayout" name="horizontalLayout_27"/>
                              </widget>
                             </item>
                             <item>
@@ -4831,37 +4664,7 @@ background-color: rgb(21, 199, 203);
                               <property name="frameShadow">
                                <enum>QFrame::Raised</enum>
                               </property>
-                              <layout class="QHBoxLayout" name="horizontalLayout_28">
-                               <item>
-                                <widget class="QLabel" name="label_12">
-                                 <property name="minimumSize">
-                                  <size>
-                                   <width>80</width>
-                                   <height>30</height>
-                                  </size>
-                                 </property>
-                                 <property name="text">
-                                  <string>Total Fee</string>
-                                 </property>
-                                </widget>
-                               </item>
-                               <item>
-                                <widget class="QLineEdit" name="ap_total_price">
-                                 <property name="minimumSize">
-                                  <size>
-                                   <width>0</width>
-                                   <height>30</height>
-                                  </size>
-                                 </property>
-                                 <property name="styleSheet">
-                                  <string notr="true">background-color: rgb(217, 217, 217);</string>
-                                 </property>
-                                 <property name="readOnly">
-                                  <bool>true</bool>
-                                 </property>
-                                </widget>
-                               </item>
-                              </layout>
+                              <layout class="QHBoxLayout" name="horizontalLayout_28"/>
                              </widget>
                             </item>
                            </layout>
@@ -6845,7 +6648,7 @@ background-color: rgb(21, 199, 203);
                                      <property name="styleSheet">
                                       <string notr="true">background-color: rgb(230, 230, 230);</string>
                                      </property>
-                                     <property name="placeholderText">
+                                     <property name="placeholderText" stdset="0">
                                       <string>Select a Unit</string>
                                      </property>
                                     </widget>
@@ -6907,7 +6710,7 @@ background-color: rgb(21, 199, 203);
                                      <property name="styleSheet">
                                       <string notr="true">background-color: rgb(230, 230, 230);</string>
                                      </property>
-                                     <property name="placeholderText">
+                                     <property name="placeholderText" stdset="0">
                                       <string>Select a medicine foam</string>
                                      </property>
                                     </widget>
@@ -9169,11 +8972,11 @@ background-color: rgb(21, 199, 203);
                            <property name="maxCount">
                             <number>2147483645</number>
                            </property>
-                           <property name="placeholderText">
-                            <string>Select a Categery</string>
-                           </property>
                            <property name="modelColumn">
                             <number>0</number>
+                           </property>
+                           <property name="placeholderText" stdset="0">
+                            <string>Select a Categery</string>
                            </property>
                           </widget>
                          </item>
@@ -9274,7 +9077,7 @@ background-color: rgb(21, 199, 203);
                            <property name="maxCount">
                             <number>2147483645</number>
                            </property>
-                           <property name="placeholderText">
+                           <property name="placeholderText" stdset="0">
                             <string>Select a Doctor</string>
                            </property>
                           </widget>

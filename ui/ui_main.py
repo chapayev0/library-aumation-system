@@ -1,29 +1,34 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainGGPVMd.ui'
+## Form generated from reading UI file 'mainxGILEE.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.15.2
+## Created by: Qt User Interface Compiler version 5.14.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
 
-from PySide2.QtCore import *
-from PySide2.QtGui import *
+from PySide2.QtCore import (QCoreApplication, QMetaObject, QObject, QPoint,
+    QRect, QSize, QUrl, Qt)
+from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
+    QFontDatabase, QIcon, QLinearGradient, QPalette, QPainter, QPixmap,
+    QRadialGradient)
 from PySide2.QtWidgets import *
-
-from PySide2.QtWebEngineWidgets import QWebEngineView
 import sys
 import sqlite3
 import os
 THIS_DIR = os.path.dirname(__file__)
 CODE_DIR = os.path.abspath(os.path.join(THIS_DIR, '..', 'ui'))
 sys.path.append(CODE_DIR)
+from PySide2.QtWebEngineWidgets import QWebEngineView
+
+from PySide2.QtWebEngineWidgets import QWebEngineView
+
 import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        if not MainWindow.objectName():
+        if MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1302, 642)
         self.root = QWidget(MainWindow)
@@ -92,7 +97,10 @@ class Ui_MainWindow(object):
         self.pushButton = QPushButton(self.frame_2)
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setMinimumSize(QSize(0, 100))
-
+        self.pushButton.setStyleSheet(u"background-image: url(:/image/assets/system.png);\n"
+"background-position: center;\n"
+" background-repeat: no-repeat;\n"
+"")
 
         self.verticalLayout_3.addWidget(self.pushButton)
 
@@ -2103,30 +2111,13 @@ class Ui_MainWindow(object):
         self.frame_17.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_42 = QHBoxLayout(self.frame_17)
         self.horizontalLayout_42.setObjectName(u"horizontalLayout_42")
-        self.doc_combo = QComboBox(self.frame_17)
-        self.doc_combo.setObjectName(u"doc_combo")
-        self.doc_combo.setMinimumSize(QSize(0, 25))
-        self.doc_combo.setStyleSheet(u"QComboBox{\n"
-"	background-color: rgb(220, 220, 220);\n"
-"}")
-        self.doc_combo.setEditable(False)
-        self.doc_combo.setMaxVisibleItems(4)
-        self.doc_combo.setPlaceholderText(u"Select Docter to Channel")
-        self.doc_combo.setModelColumn(0)
+        self.lineEdit = QLineEdit(self.frame_17)
+        self.lineEdit.setObjectName(u"lineEdit")
+        self.lineEdit.setMinimumSize(QSize(0, 30))
+        self.lineEdit.setMaximumSize(QSize(400, 16777215))
+        self.lineEdit.setStyleSheet(u"background-color: rgb(235, 235, 235);")
 
-        self.horizontalLayout_42.addWidget(self.doc_combo)
-
-        self.ap_date_search = QDateEdit(self.frame_17)
-        self.ap_date_search.setObjectName(u"ap_date_search")
-        self.ap_date_search.setMinimumSize(QSize(0, 25))
-        self.ap_date_search.setStyleSheet(u"background-color: rgb(220, 220, 220);")
-        self.ap_date_search.setLocale(QLocale(QLocale.English, QLocale.UnitedKingdom))
-        self.ap_date_search.setProperty("showGroupSeparator", False)
-        self.ap_date_search.setMinimumDateTime(QDateTime(QDate(2021, 12, 20), QTime(0, 0, 0)))
-        self.ap_date_search.setCurrentSection(QDateTimeEdit.DaySection)
-        self.ap_date_search.setCalendarPopup(True)
-
-        self.horizontalLayout_42.addWidget(self.ap_date_search)
+        self.horizontalLayout_42.addWidget(self.lineEdit)
 
 
         self.verticalLayout_11.addWidget(self.frame_17)
@@ -2152,31 +2143,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_20 = QHBoxLayout(self.frame_37)
         self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
         self.horizontalLayout_20.setContentsMargins(9, 0, 9, 0)
-        self.label_27 = QLabel(self.frame_37)
-        self.label_27.setObjectName(u"label_27")
-
-        self.horizontalLayout_20.addWidget(self.label_27)
-
-        self.next_num = QLineEdit(self.frame_37)
-        self.next_num.setObjectName(u"next_num")
-        self.next_num.setMinimumSize(QSize(1, 30))
-        self.next_num.setMaximumSize(QSize(150, 16777215))
-        self.next_num.setStyleSheet(u"background-color: rgb(220, 220, 220);")
-
-        self.horizontalLayout_20.addWidget(self.next_num)
-
-        self.label_29 = QLabel(self.frame_37)
-        self.label_29.setObjectName(u"label_29")
-
-        self.horizontalLayout_20.addWidget(self.label_29)
-
-        self.total_apoinments = QLabel(self.frame_37)
-        self.total_apoinments.setObjectName(u"total_apoinments")
-        self.total_apoinments.setMinimumSize(QSize(0, 30))
-        self.total_apoinments.setStyleSheet(u"background-color: rgb(220, 220, 220);")
-
-        self.horizontalLayout_20.addWidget(self.total_apoinments)
-
 
         self.verticalLayout_11.addWidget(self.frame_37)
 
@@ -2245,8 +2211,8 @@ class Ui_MainWindow(object):
 
         self.ap_age = QLineEdit(self.frame_20)
         self.ap_age.setObjectName(u"ap_age")
-        self.ap_age.setMinimumSize(QSize(0, 30))
-        self.ap_age.setStyleSheet(u"background-color: rgb(220, 220, 220);")
+        self.ap_age.setMinimumSize(QSize(0, 35))
+        self.ap_age.setStyleSheet(u"background-color: rgb(232, 232, 232);")
 
         self.horizontalLayout_23.addWidget(self.ap_age)
 
@@ -2267,8 +2233,8 @@ class Ui_MainWindow(object):
 
         self.ap_phone_num = QLineEdit(self.frame_21)
         self.ap_phone_num.setObjectName(u"ap_phone_num")
-        self.ap_phone_num.setMinimumSize(QSize(0, 30))
-        self.ap_phone_num.setStyleSheet(u"background-color: rgb(214, 214, 214);")
+        self.ap_phone_num.setMinimumSize(QSize(0, 35))
+        self.ap_phone_num.setStyleSheet(u"background-color: rgb(232, 232, 232);")
 
         self.horizontalLayout_24.addWidget(self.ap_phone_num)
 
@@ -2294,19 +2260,6 @@ class Ui_MainWindow(object):
         self.frame_22.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_26 = QHBoxLayout(self.frame_22)
         self.horizontalLayout_26.setObjectName(u"horizontalLayout_26")
-        self.label_10 = QLabel(self.frame_22)
-        self.label_10.setObjectName(u"label_10")
-        self.label_10.setMinimumSize(QSize(80, 30))
-
-        self.horizontalLayout_26.addWidget(self.label_10)
-
-        self.ap_default_price = QLineEdit(self.frame_22)
-        self.ap_default_price.setObjectName(u"ap_default_price")
-        self.ap_default_price.setMinimumSize(QSize(0, 30))
-        self.ap_default_price.setStyleSheet(u"background-color: rgb(220, 220, 220);")
-
-        self.horizontalLayout_26.addWidget(self.ap_default_price)
-
 
         self.verticalLayout_13.addWidget(self.frame_22)
 
@@ -2316,19 +2269,6 @@ class Ui_MainWindow(object):
         self.frame_23.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_27 = QHBoxLayout(self.frame_23)
         self.horizontalLayout_27.setObjectName(u"horizontalLayout_27")
-        self.label_11 = QLabel(self.frame_23)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setMinimumSize(QSize(80, 30))
-
-        self.horizontalLayout_27.addWidget(self.label_11)
-
-        self.ap_addtional_price = QLineEdit(self.frame_23)
-        self.ap_addtional_price.setObjectName(u"ap_addtional_price")
-        self.ap_addtional_price.setMinimumSize(QSize(0, 30))
-        self.ap_addtional_price.setStyleSheet(u"background-color: rgb(217, 217, 217);")
-
-        self.horizontalLayout_27.addWidget(self.ap_addtional_price)
-
 
         self.verticalLayout_13.addWidget(self.frame_23)
 
@@ -2338,20 +2278,6 @@ class Ui_MainWindow(object):
         self.frame_24.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_28 = QHBoxLayout(self.frame_24)
         self.horizontalLayout_28.setObjectName(u"horizontalLayout_28")
-        self.label_12 = QLabel(self.frame_24)
-        self.label_12.setObjectName(u"label_12")
-        self.label_12.setMinimumSize(QSize(80, 30))
-
-        self.horizontalLayout_28.addWidget(self.label_12)
-
-        self.ap_total_price = QLineEdit(self.frame_24)
-        self.ap_total_price.setObjectName(u"ap_total_price")
-        self.ap_total_price.setMinimumSize(QSize(0, 30))
-        self.ap_total_price.setStyleSheet(u"background-color: rgb(217, 217, 217);")
-        self.ap_total_price.setReadOnly(True)
-
-        self.horizontalLayout_28.addWidget(self.ap_total_price)
-
 
         self.verticalLayout_13.addWidget(self.frame_24)
 
@@ -3510,15 +3436,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_141.addWidget(self.label_91)
 
-        self.pc_m_exp = QDateEdit(self.frame_137)
-        self.pc_m_exp.setObjectName(u"pc_m_exp")
-        self.pc_m_exp.setMinimumSize(QSize(0, 30))
-        self.pc_m_exp.setStyleSheet(u"background-color: rgb(230, 230, 230);")
-        self.pc_m_exp.setMinimumDate(QDate(2022, 1, 1))
-        self.pc_m_exp.setCalendarPopup(True)
-
-        self.horizontalLayout_141.addWidget(self.pc_m_exp)
-
 
         self.verticalLayout_43.addWidget(self.frame_137)
 
@@ -4352,15 +4269,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_34.addWidget(self.h_date_lbl)
 
-        self.history_date_edit = QDateEdit(self.frame_31)
-        self.history_date_edit.setObjectName(u"history_date_edit")
-        self.history_date_edit.setMinimumSize(QSize(0, 20))
-        self.history_date_edit.setStyleSheet(u"background-color: rgb(211, 211, 211);")
-        self.history_date_edit.setDateTime(QDateTime(QDate(2021, 12, 24), QTime(0, 0, 0)))
-        self.history_date_edit.setMinimumDate(QDate(2021, 12, 21))
-        self.history_date_edit.setCalendarPopup(True)
 
-        self.horizontalLayout_34.addWidget(self.history_date_edit)
 
 
         self.horizontalLayout_32.addWidget(self.frame_31)
@@ -4929,7 +4838,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
 
         self.main_stack.setCurrentIndex(0)
-        self.recipt_stack.setCurrentIndex(2)
+        self.recipt_stack.setCurrentIndex(8)
         self.report_page_2.setCurrentIndex(1)
         self.report_page.setCurrentIndex(1)
         self.history_cat_combo.setCurrentIndex(-1)
@@ -5075,7 +4984,7 @@ class Ui_MainWindow(object):
         self.prev_combo.setItemText(2, QCoreApplication.translate("MainWindow", u"Relgion", None))
         self.prev_combo.setItemText(3, QCoreApplication.translate("MainWindow", u"Math", None))
 
-        self.prev_combo.setPlaceholderText("")
+        self.prev_combo.setProperty("placeholderText", "")
         self.label_48.setText(QCoreApplication.translate("MainWindow", u"ID", None))
         self.usr_id.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Select a Category from list", None))
         self.barcodelabel.setText("")
@@ -5095,26 +5004,9 @@ class Ui_MainWindow(object):
         self.label_44.setText(QCoreApplication.translate("MainWindow", u"Total Fee", None))
         self.re_update_cancle_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.re_update_btn.setText(QCoreApplication.translate("MainWindow", u"Update", None))
-#if QT_CONFIG(tooltip)
-        self.doc_combo.setToolTip(QCoreApplication.translate("MainWindow", u"Select A docter to appoint", None))
-#endif // QT_CONFIG(tooltip)
-        self.doc_combo.setCurrentText("")
-#if QT_CONFIG(tooltip)
-        self.ap_date_search.setToolTip(QCoreApplication.translate("MainWindow", u"Select a date to appoinment", None))
-#endif // QT_CONFIG(tooltip)
-        self.ap_date_search.setDisplayFormat(QCoreApplication.translate("MainWindow", u"d/M/yyyy", None))
-        self.label_27.setText(QCoreApplication.translate("MainWindow", u"Next Number", None))
-        self.next_num.setPlaceholderText("")
-        self.label_29.setText(QCoreApplication.translate("MainWindow", u"Total Apointed", None))
-        self.total_apoinments.setText("")
-        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Patient Name", None))
-        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Patient Age", None))
-        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Phone Number", None))
-        self.label_10.setText(QCoreApplication.translate("MainWindow", u"Default Fee", None))
-        self.ap_default_price.setText("")
-        self.label_11.setText(QCoreApplication.translate("MainWindow", u"Addtional Fee", None))
-        self.ap_addtional_price.setText(QCoreApplication.translate("MainWindow", u"0", None))
-        self.label_12.setText(QCoreApplication.translate("MainWindow", u"Total Fee", None))
+        self.label_7.setText(QCoreApplication.translate("MainWindow", u"Name", None))
+        self.label_8.setText(QCoreApplication.translate("MainWindow", u"Email", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Student Number", None))
 #if QT_CONFIG(tooltip)
         self.ap_cancle_btn.setToolTip(QCoreApplication.translate("MainWindow", u"Cancle apoinment", None))
 #endif // QT_CONFIG(tooltip)
@@ -5163,9 +5055,9 @@ class Ui_MainWindow(object):
         self.label_75.setText(QCoreApplication.translate("MainWindow", u"Medicine ID", None))
         self.ad_m_id.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Select a Position from list", None))
         self.label_76.setText(QCoreApplication.translate("MainWindow", u"Unit", None))
-        self.ad_m_unit_combo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Select a Unit", None))
+        self.ad_m_unit_combo.setProperty("placeholderText", QCoreApplication.translate("MainWindow", u"Select a Unit", None))
         self.label_77.setText(QCoreApplication.translate("MainWindow", u"Foam", None))
-        self.ad_m_foam_combo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Select a medicine foam", None))
+        self.ad_m_foam_combo.setProperty("placeholderText", QCoreApplication.translate("MainWindow", u"Select a medicine foam", None))
         self.ad_add_btn.setText(QCoreApplication.translate("MainWindow", u"Add", None))
         self.report_page.setTabText(self.report_page.indexOf(self.tab), QCoreApplication.translate("MainWindow", u"Add a new Medicine", None))
         self.label_78.setText(QCoreApplication.translate("MainWindow", u"Medicine Name", None))
@@ -5177,7 +5069,7 @@ class Ui_MainWindow(object):
         self.label_81.setText(QCoreApplication.translate("MainWindow", u"Unit Price", None))
         self.label_64.setText(QCoreApplication.translate("MainWindow", u"Total Price", None))
         self.label_91.setText(QCoreApplication.translate("MainWindow", u"EXP Date", None))
-        self.pc_m_exp.setDisplayFormat(QCoreApplication.translate("MainWindow", u"d/M/yyyy", None))
+        # self.pc_m_exp.setDisplayFormat(QCoreApplication.translate("MainWindow", u"d/M/yyyy", None))
         self.update_user_btn_4.setText(QCoreApplication.translate("MainWindow", u"Update", None))
         self.pc_prch_btn.setText(QCoreApplication.translate("MainWindow", u"Purchase", None))
         self.report_page.setTabText(self.report_page.indexOf(self.tab_3), QCoreApplication.translate("MainWindow", u"Purchace Medicine", None))
@@ -5215,14 +5107,14 @@ class Ui_MainWindow(object):
         self.ap_update_cancle_btn.setText(QCoreApplication.translate("MainWindow", u"Back", None))
         self.ap_update_btn.setText(QCoreApplication.translate("MainWindow", u"Update", None))
         self.history_cat_combo.setCurrentText("")
-        self.history_cat_combo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Select a Categery", None))
+        self.history_cat_combo.setProperty("placeholderText", QCoreApplication.translate("MainWindow", u"Select a Categery", None))
         self.rc_radio.setText(QCoreApplication.translate("MainWindow", u"Reciption", None))
         self.ap_radio.setText(QCoreApplication.translate("MainWindow", u"Appoinment", None))
         self.hostory_search.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Search here", None))
         self.history_doc_combo.setCurrentText("")
-        self.history_doc_combo.setPlaceholderText(QCoreApplication.translate("MainWindow", u"Select a Doctor", None))
+        self.history_doc_combo.setProperty("placeholderText", QCoreApplication.translate("MainWindow", u"Select a Doctor", None))
         self.h_date_lbl.setText(QCoreApplication.translate("MainWindow", u"Date", None))
-        self.history_date_edit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"d/M/yyyy", None))
+        # self.history_date_edit.setDisplayFormat(QCoreApplication.translate("MainWindow", u"d/M/yyyy", None))
         self.h_limit_lbl.setText(QCoreApplication.translate("MainWindow", u"Result Limit", None))
         self.label_17.setText(QCoreApplication.translate("MainWindow", u"Position Num", None))
         self.label_18.setText(QCoreApplication.translate("MainWindow", u"Patient Name", None))
