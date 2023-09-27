@@ -1773,7 +1773,7 @@ class main_ui(QMainWindow):
 
             if result is None:
 
-                self.book_failed()
+
                 print("none")
 
 
@@ -1783,7 +1783,7 @@ class main_ui(QMainWindow):
                 smtp_port = 587  # Port for TLS
                 sender_email = 'librarysystem24hr@gmail.com'
                 password = 'hqrm uzbe ymnh cepq '
-                reciver_mail = "sdilhara544@gmail.com"  # Your Gmail account password
+                reciver_mail = "achintha.anr.99@gmail.com"  # Your Gmail account password
 
                 # Create a message
                 message = MIMEMultipart()
@@ -1811,6 +1811,7 @@ class main_ui(QMainWindow):
 
                 # Connect to the SMTP server and send the email
                 try:
+
                     server = smtplib.SMTP(smtp_server, smtp_port)
                     server.starttls()  # Use TLS for security
                     server.login(sender_email, password)
@@ -1821,12 +1822,14 @@ class main_ui(QMainWindow):
                 except Exception as e:
                     print(f'Error: {str(e)}')
                 finally:
+
                     server.quit()
+                    self.book_failed()
 
 
             else:
 
-                self.book_success()
+
                 # Iterate over the result tuple and add each value to the list
                 formatted_data = "\t".join(str(value) for value in result)
                 self.ui.usr_list.addItem(formatted_data)
@@ -1838,7 +1841,7 @@ class main_ui(QMainWindow):
                 smtp_port = 587  # Port for TLS
                 sender_email = 'librarysystem24hr@gmail.com'
                 password = 'hqrm uzbe ymnh cepq '
-                reciver_mail = "sdilhara544@gmail.com"# Your Gmail account password
+                reciver_mail = "achintha.anr.99@gmail.com"# Your Gmail account password
 
                 # Create a message
                 message = MIMEMultipart()
@@ -1892,10 +1895,13 @@ class main_ui(QMainWindow):
                     text = message.as_string()
                     server.sendmail(sender_email, reciver_mail, text)
                     print('Email sent successfully')
+
+                    self.book_success()
                 except Exception as e:
                     print(f'Error: {str(e)}')
                 finally:
-                    server.quit()
+                    pass
+                    # server.quit()
             # Close the cursor and the connection when done
 
         else:
